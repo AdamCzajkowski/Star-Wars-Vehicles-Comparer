@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_table">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.adamczajkowski.starwarsvehiclescomparer.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_table"
+        android:name="com.adamczajkowski.feature.comparer_feature.TableFragment"
+        android:label="@string/title_table"
+        tools:layout="@layout/fragment_table" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.adamczajkowski.starwarsvehiclescomparer.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_history"
+        android:name="com.adamczajkowski.history.HistoryFragment"
+        android:label="@string/title_history"
+        tools:layout="@layout/fragment_history" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.adamczajkowski.starwarsvehiclescomparer.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

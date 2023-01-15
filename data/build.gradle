@@ -1,0 +1,15 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir/common-android.gradle"
+
+dependencies {
+    implementation project(":common")
+    implementation project(":domain")
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+}
