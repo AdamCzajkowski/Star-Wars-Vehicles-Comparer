@@ -6,6 +6,7 @@ import com.adamczajkowski.common.utils.BaseFragment
 import com.adamczajkowski.feature.comparer_feature.databinding.FragmentTableBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
+import com.adamczajkowski.feature.comparer_feature.viewModel.TableViewModel
 
 @AndroidEntryPoint
 class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::inflate) {
@@ -15,11 +16,27 @@ class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObservers()
+        viewModel.fetchStarships(true)
+
     }
 
     private fun setObservers() {
-        viewModel.text.observe(viewLifecycleOwner) {
-            binding.textDashboard.text = it
+        with(viewModel) {
+            starships.observe(viewLifecycleOwner) {
+                // Sample - >testing fetching data
+                binding.textDashboard.text = it.map { it.name }.toString()
+            }
+            isLoading.observe(viewLifecycleOwner) {
+
+            }
+            errorMessage.observe(viewLifecycleOwner) {
+
+            }
         }
+    }
+
+    override fun onDestroyView() {
+        viewModel.onDestroyView()
+        super.onDestroyView()
     }
 }
