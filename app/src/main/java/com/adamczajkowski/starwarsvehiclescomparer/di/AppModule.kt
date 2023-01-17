@@ -1,6 +1,11 @@
 package com.adamczajkowski.starwarsvehiclescomparer.di
 
 import android.content.Context
+import com.adamczajkowski.common.di.SchedulerModule
+import com.adamczajkowski.data.di.ApiModule
+import com.adamczajkowski.data.di.RepositoryModule
+import com.adamczajkowski.data.di.ServiceModule
+import com.adamczajkowski.domain.di.UseCaseModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,7 +15,12 @@ import javax.inject.Singleton
 
 @Module(
     includes = [
-        RetrofitModule::class
+        RetrofitModule::class,
+        ApiModule::class,
+        ServiceModule::class,
+        RepositoryModule::class,
+        UseCaseModule::class,
+        SchedulerModule::class
     ]
 )
 
