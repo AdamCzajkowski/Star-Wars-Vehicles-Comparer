@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Star Wars Vehicles Comparer</string>
+
+    <string name="title_table">Comparison</string>
+    <string name="title_history">History</string>
+
+    <string name="text_button_select_vehicles">Select vehicles to compare</string>
+    <string name="counter_text">Selected: %d</string>
+    <string name="starship_dialog_title_single">Selected 1 vehicle</string>
+    <string name="starship_dialog_title_multiple">Selected %d vehicles</string>
+    <string name="starship_dialog_confirm_button_text">Compare!</string>
+
+    <string name="error_message">Error occurred. Not all or no vehicles can be uploaded to the list.</string>
+
+    <string name="exit">exit</string>
+</resources>

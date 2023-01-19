@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.adamczajkowski.common.di.SCHEDULER_IO
 import com.adamczajkowski.common.di.SCHEDULER_MAIN_THREAD
 import com.adamczajkowski.common.models.Starship
-import com.adamczajkowski.common.utils.Paginator
 import com.adamczajkowski.domain.useCase.StarshipsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Scheduler
@@ -27,35 +26,47 @@ class TableViewModel @Inject constructor(
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    private val _errorMessage: MutableLiveData<String?> = MutableLiveData(null)
+    private val _errorMessage: MutableLiveData<String?> = MutableLiveData()
     val errorMessage: LiveData<String?> get() = _errorMessage
-
-    private val paginator: Paginator = Paginator()
 
     private val disposable = CompositeDisposable()
 
+    private var currentPage = 1
+
     fun fetchStarships(isFirstPage: Boolean) {
-        if (!isFirstPage && !paginator.canLoadNextPage()) return
-        if (isFirstPage) paginator.resetPage()
         updateProgressBarVisibility(true)
 
+        if (isFirstPage) currentPage = 1
         disposable.add(
-            starshipsUseCase.getStarships(paginator.currentPage)
+            starshipsUseCase.getStarships(currentPage)
                 .subscribeOn(subscribeOnScheduler)
                 .observeOn(observeOnScheduler)
-                .doOnTerminate {
-                    updateProgressBarVisibility(false)
-                }
                 .subscribe(
-                    { result ->
+                    { response ->
                         _starships.postValue(
-                            if (isFirstPage) result
-                            else _starships.value?.plus(result)
+                            if (isFirstPage) response.results
+                            else _starships.value?.plus(response.results)
                         )
-                        paginator.advanceForLimit(result.size)
+                        if (response.isNext) {
+                            currentPage++
+                            fetchStarships(false)
+                        } else {
+                            updateProgressBarVisibility(false)
+                        }
                     }, ::onFetchStarshipsFailure
                 )
         )
+    }
+
+    fun updateListOfStarships(updatedStarship: Starship) {
+        _starships.value.apply {
+            this?.find { it.name == updatedStarship.name }?.isSelected = updatedStarship.isSelected
+            this?.let { _starships.postValue(it) }
+        }
+    }
+
+    fun getSelectedCount(): Int {
+        return _starships.value?.filter { it.isSelected }?.size ?: 0
     }
 
     private fun updateProgressBarVisibility(isEnable: Boolean) {
