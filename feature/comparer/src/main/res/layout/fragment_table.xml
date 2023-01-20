@@ -3,20 +3,162 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/container"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    android:background="@color/background"
+    tools:context="TableFragment">
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/button_select_vehicles"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:layout_height="50dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/background_button_select_vehicles"
+        android:gravity="center"
+        android:text="@string/text_button_select_vehicles"
+        android:textColor="@color/white_90"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/selected_counter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black_30"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/button_select_vehicles"
+        app:layout_constraintStart_toStartOf="@id/button_select_vehicles"
+        app:layout_constraintTop_toBottomOf="@id/button_select_vehicles"
+        tools:text="Selected: 23" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/black_00"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/first_category"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_category_separator"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:text="@string/first_category_title"
+        android:textColor="@color/black_70"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_counter" />
+
+    <TextView
+        android:id="@+id/second_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/second_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_category" />
+
+    <TextView
+        android:id="@+id/third_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/third_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_category" />
+
+    <TextView
+        android:id="@+id/fourth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/fourth_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_category" />
+
+    <TextView
+        android:id="@+id/fifth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/fifth_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourth_category" />
+
+    <TextView
+        android:id="@+id/sixth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/sixth_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fifth_category" />
+
+    <TextView
+        android:id="@+id/seventh_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/seventh_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sixth_category" />
+
+    <TextView
+        android:id="@+id/eighth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/eighth_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seventh_category" />
+
+    <TextView
+        android:id="@+id/ninth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Category"
+        android:text="@string/ninth_category_title"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eighth_category" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_table"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/ninth_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/first_category"
+        app:layout_constraintTop_toBottomOf="@+id/selected_counter"
+        tools:itemCount="10"
+        tools:listitem="@layout/table_item" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/table_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="selected_counter, first_category, second_category, third_category, fourth_category, fifth_category, sixth_category, seventh_category, eighth_category, ninth_category, recycler_table"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/instruction_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/instruction_message"
+        android:gravity="center"
+        android:maxWidth="200dp"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

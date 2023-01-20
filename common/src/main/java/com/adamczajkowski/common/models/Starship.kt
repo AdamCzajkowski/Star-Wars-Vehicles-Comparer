@@ -1,5 +1,9 @@
 package com.adamczajkowski.common.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Starship(
     val name: String?,
     val model: String?,
@@ -13,5 +17,6 @@ data class Starship(
     val consumables: String?,
     val hyperdriveRating: String?,
     val mglt: String?,
-    val starshipClass: String?
-)
+    val starshipClass: String?,
+    var isSelected: Boolean = false
+): Parcelable
