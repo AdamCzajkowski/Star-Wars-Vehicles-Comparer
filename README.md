@@ -48,3 +48,9 @@ RxJava3
 Unit tests for comparing and parsing values 
 
 Modularization: :app, :data, :domain :common, :feature:comparison, :feature:history
+
+Video:
+----------------------------
+
+https://user-images.githubusercontent.com/36416126/213762836-aebe38e6-7331-4dd1-9aab-bf6768566297.mp4
+
