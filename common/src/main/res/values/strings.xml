@@ -12,5 +12,16 @@
 
     <string name="error_message">Error occurred. Not all or no vehicles can be uploaded to the list.</string>
 
+    <string name="first_category_title">Cost in credits</string>
+    <string name="second_category_title">Length</string>
+    <string name="third_category_title">Max\natmosphering speed</string>
+    <string name="fourth_category_title">Crew</string>
+    <string name="fifth_category_title">Passengers</string>
+    <string name="sixth_category_title">Cargo capacity</string>
+    <string name="seventh_category_title">Consumables</string>
+    <string name="eighth_category_title">Hyperdrive rating</string>
+    <string name="ninth_category_title">Maximum number of Megalights</string>
+
+    <string name="instruction_message">Select the vehicles to compare and the comparison table appears.</string>
     <string name="exit">exit</string>
 </resources>

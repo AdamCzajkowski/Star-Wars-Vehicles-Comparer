@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/starship_name"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:background="@drawable/background_category_separator"
+        android:gravity="center"
+        android:minWidth="70dp"
+        android:maxWidth="120dp"
+        android:textStyle="bold"
+        android:paddingHorizontal="4dp"
+        android:textColor="@color/black_70"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Starship name very very looooooooooooooooooong 5000 deluxe huge name" />
+
+    <TextView
+        android:id="@+id/first_category"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/background_category_separator"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:textColor="@color/black_70"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/starship_name"
+        app:layout_constraintStart_toStartOf="@+id/starship_name"
+        app:layout_constraintTop_toBottomOf="@+id/starship_name"
+        tools:text="@string/first_category_title" />
+
+    <TextView
+        android:id="@+id/second_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_category"
+        tools:text="@string/second_category_title" />
+
+    <TextView
+        android:id="@+id/third_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_category"
+        tools:text="@string/third_category_title" />
+
+    <TextView
+        android:id="@+id/fourth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_category"
+        tools:text="@string/fourth_category_title" />
+
+    <TextView
+        android:id="@+id/fifth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourth_category"
+        tools:text="@string/first_category_title" />
+
+    <TextView
+        android:id="@+id/sixth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fifth_category"
+        tools:text="@string/sixth_category_title" />
+
+    <TextView
+        android:id="@+id/seventh_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sixth_category"
+        tools:text="@string/seventh_category_title" />
+
+    <TextView
+        android:id="@+id/eighth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seventh_category"
+        tools:text="@string/eighth_category_title" />
+
+    <TextView
+        android:id="@+id/ninth_category"
+        style="@style/Theme.StarWarsVehiclesComparer.Item"
+        app:layout_constraintEnd_toEndOf="@+id/first_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eighth_category"
+        tools:text="@string/ninth_category_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

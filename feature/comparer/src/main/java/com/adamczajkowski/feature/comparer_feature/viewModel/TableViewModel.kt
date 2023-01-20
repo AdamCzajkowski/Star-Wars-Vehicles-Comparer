@@ -7,6 +7,9 @@ import com.adamczajkowski.common.di.SCHEDULER_IO
 import com.adamczajkowski.common.di.SCHEDULER_MAIN_THREAD
 import com.adamczajkowski.common.models.Starship
 import com.adamczajkowski.domain.useCase.StarshipsUseCase
+import com.adamczajkowski.feature.comparer_feature.model.CategoriesCombine
+import com.adamczajkowski.feature.comparer_feature.model.Category
+import com.adamczajkowski.feature.comparer_feature.utils.CompareHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -67,6 +70,28 @@ class TableViewModel @Inject constructor(
 
     fun getSelectedCount(): Int {
         return _starships.value?.filter { it.isSelected }?.size ?: 0
+    }
+
+    fun getSelectedVehicles(): List<Starship> {
+        return _starships.value?.filter { it.isSelected } ?: listOf()
+    }
+
+    fun getComparedCategories(): CategoriesCombine {
+        val starships = getSelectedVehicles()
+        return CategoriesCombine(
+            costInCredit = CompareHelper.compareNumbers(starships, Category.COST_IN_CREDITS),
+            length = CompareHelper.compareNumbers(starships, Category.LENGTH),
+            maxAtmospheringSpeed = CompareHelper.compareNumbers(
+                starships,
+                Category.MAX_ATMOSPHERING_SPEED
+            ),
+            crew = CompareHelper.compareNumbers(starships, Category.CREW),
+            passengers = CompareHelper.compareNumbers(starships, Category.PASSENGERS),
+            cargoCapacity = CompareHelper.compareNumbers(starships, Category.CARGO_CAPACITY),
+            consumables = CompareHelper.compareNumbers(starships, Category.CONSUMABLES),
+            hyperdriveRating = CompareHelper.compareNumbers(starships, Category.HYPERDRIVE_RATING),
+            mglt = CompareHelper.compareNumbers(starships, Category.MGLT)
+        )
     }
 
     private fun updateProgressBarVisibility(isEnable: Boolean) {

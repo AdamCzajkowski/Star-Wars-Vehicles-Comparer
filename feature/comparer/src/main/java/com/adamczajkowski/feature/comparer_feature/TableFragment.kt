@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.adamczajkowski.common.models.Starship
 import com.adamczajkowski.common.utils.BaseFragment
 import com.adamczajkowski.feature.comparer_feature.databinding.FragmentTableBinding
 import com.adamczajkowski.feature.comparer_feature.dialog.StarshipsDialog
+import com.adamczajkowski.feature.comparer_feature.table.TableAdapter
 import com.adamczajkowski.feature.comparer_feature.utils.SelectedVehicleAction
 import com.adamczajkowski.feature.comparer_feature.viewModel.TableViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,11 +24,20 @@ class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::i
         StarshipsDialog.newInstance(viewModel.starships.value, this)
     }
 
+    private val tableAdapter: TableAdapter by lazy {
+        TableAdapter()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.fetchStarships(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObservers()
         setOnClickListeners()
-        viewModel.fetchStarships(true)
+        setRecycler()
     }
 
     override fun selectedVehicle(starship: Starship) {
@@ -44,8 +55,11 @@ class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::i
     private fun setObservers() {
         with(viewModel) {
             starships.observe(viewLifecycleOwner) {
-                // Sample - >testing fetching data
-                binding.textDashboard.text = it.filter { it.isSelected }.map { it.name }.toString()
+                updateTableVisibility()
+                tableAdapter.setStarships(
+                    getSelectedVehicles(),
+                    getComparedCategories()
+                )
             }
             isLoading.observe(viewLifecycleOwner) {
                 updateProgressBarVisibility(it)
@@ -56,8 +70,31 @@ class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::i
         }
     }
 
+    private fun setRecycler() {
+        with(binding) {
+            with(recyclerTable) {
+                layoutManager = LinearLayoutManager(requireContext()).apply {
+                    orientation = LinearLayoutManager.HORIZONTAL
+                }
+                itemAnimator = null
+                adapter = tableAdapter
+            }
+        }
+    }
+
     private fun updateProgressBarVisibility(isVisible: Boolean) {
         binding.progressBar.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+    private fun updateTableVisibility() {
+        if (viewModel.getSelectedVehicles().isNotEmpty()) {
+            binding.tableGroup.visibility = View.VISIBLE
+            binding.instructionText.visibility = View.INVISIBLE
+        } else {
+            binding.instructionText.visibility = View.VISIBLE
+            binding.tableGroup.visibility = View.INVISIBLE
+        }
+        binding.container.invalidate()
     }
 
     private fun showErrorToast() {
