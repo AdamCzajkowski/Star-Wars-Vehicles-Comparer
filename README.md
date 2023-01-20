@@ -1,6 +1,6 @@
 # Star-Wars-Vehicles-Comparer
 
-The applicalation to compare vehicles from the Star Wars movies with highlighting best and worst values. 
+The applicalation to compare vehicles from the Star Wars movies with highlighting best and worst values. Saving comparision into the local database
 
 Features:
 -------------------------
@@ -35,7 +35,7 @@ Main programming language - Kotlin
 
 Backend: https://swapi.dev/
 
-Network connection = RetroFit
+Network connection - RetroFit
 
 DI - Hilt
 
