@@ -46,6 +46,10 @@ class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::i
         updateCounter()
     }
 
+    override fun onDialogDismiss() {
+        viewModel.saveComparison()
+    }
+
     private fun setOnClickListeners() {
         binding.buttonSelectVehicles.setOnClickListener {
             starshipsDialog.show(parentFragmentManager, StarshipsDialog.STARSHIPS_DIALOG_TAG)
@@ -71,14 +75,13 @@ class TableFragment : BaseFragment<FragmentTableBinding>(FragmentTableBinding::i
     }
 
     private fun setRecycler() {
-        with(binding) {
-            with(recyclerTable) {
-                layoutManager = LinearLayoutManager(requireContext()).apply {
-                    orientation = LinearLayoutManager.HORIZONTAL
-                }
-                itemAnimator = null
-                adapter = tableAdapter
+        with(binding.recyclerTable) {
+            layoutManager = LinearLayoutManager(requireContext()).apply {
+                orientation = LinearLayoutManager.HORIZONTAL
             }
+            setHasFixedSize(true)
+            itemAnimator = null
+            adapter = tableAdapter
         }
     }
 

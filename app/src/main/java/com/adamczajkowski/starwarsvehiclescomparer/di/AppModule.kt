@@ -17,6 +17,7 @@ import javax.inject.Singleton
     includes = [
         RetrofitModule::class,
         ApiModule::class,
+        DatabaseModule::class,
         ServiceModule::class,
         RepositoryModule::class,
         UseCaseModule::class,
