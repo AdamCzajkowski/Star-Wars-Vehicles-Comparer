@@ -1,0 +1,11 @@
+apply from: "$rootDir/common-android.gradle"
+apply plugin: 'dagger.hilt.android.plugin'
+
+dependencies {
+    implementation project(":common")
+    implementation project(":domain")
+
+    // Hilt
+    implementation 'com.google.dagger:hilt-android:2.44.2'
+    kapt 'com.google.dagger:hilt-compiler:2.44.2'
+}
