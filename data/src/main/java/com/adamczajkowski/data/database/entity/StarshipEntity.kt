@@ -3,18 +3,18 @@ package com.adamczajkowski.data.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.adamczajkowski.common.models.StarshipComparisonHistoryItem
 import java.util.*
 
 @Entity(tableName = "last_compared")
 data class StarshipEntity(
-
-    @PrimaryKey
-    @ColumnInfo(name = "uuid")
-    var uuid: String,
-
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "compared_vehicles")
-    val vehicles: String,
+    val vehicles: String = "",
+    @ColumnInfo(name = "added_date")
+    var addedDate: Date
+)
 
-    @ColumnInfo(name = "added_data")
-    var addedData: Date
+fun StarshipEntity.toStarshipComparisonHistoryItem() = StarshipComparisonHistoryItem(
+    vehicles, addedDate
 )

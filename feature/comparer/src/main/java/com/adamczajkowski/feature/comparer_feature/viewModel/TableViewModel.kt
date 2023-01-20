@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.adamczajkowski.common.di.SCHEDULER_IO
 import com.adamczajkowski.common.di.SCHEDULER_MAIN_THREAD
 import com.adamczajkowski.common.models.Starship
+import com.adamczajkowski.domain.useCase.HistoryUseCase
 import com.adamczajkowski.domain.useCase.StarshipsUseCase
 import com.adamczajkowski.feature.comparer_feature.model.CategoriesCombine
 import com.adamczajkowski.feature.comparer_feature.model.Category
@@ -20,7 +21,8 @@ import javax.inject.Named
 class TableViewModel @Inject constructor(
     @Named(SCHEDULER_IO) val subscribeOnScheduler: Scheduler,
     @Named(SCHEDULER_MAIN_THREAD) val observeOnScheduler: Scheduler,
-    private val starshipsUseCase: StarshipsUseCase
+    private val starshipsUseCase: StarshipsUseCase,
+    private val historyUseCase: HistoryUseCase
 ) : ViewModel() {
 
     private val _starships: MutableLiveData<List<Starship>> = MutableLiveData()
@@ -66,6 +68,10 @@ class TableViewModel @Inject constructor(
             this?.find { it.name == updatedStarship.name }?.isSelected = updatedStarship.isSelected
             this?.let { _starships.postValue(it) }
         }
+    }
+
+    fun saveComparison() {
+        historyUseCase.saveComparison(getSelectedVehicles())
     }
 
     fun getSelectedCount(): Int {

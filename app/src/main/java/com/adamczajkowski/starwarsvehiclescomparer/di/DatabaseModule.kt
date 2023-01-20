@@ -1,6 +1,9 @@
 package com.adamczajkowski.starwarsvehiclescomparer.di
 
 import android.content.Context
+import androidx.room.Room
+import com.adamczajkowski.data.database.RoomDB
+import com.adamczajkowski.data.database.dao.StarshipDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,9 +15,19 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-/*    @Provides
+    @Provides
     @Singleton
-    fun provideDatabse(
+    fun provideDatabase(
         @ApplicationContext context: Context
-    ): Room*/
+    ): RoomDB = Room.databaseBuilder(
+        context,
+        RoomDB::class.java,
+        "database"
+    ).build()
+
+    @Provides
+    @Singleton
+    fun provideStarshipDao(
+        roomDB: RoomDB
+    ): StarshipDao = roomDB.starshipDao()
 }

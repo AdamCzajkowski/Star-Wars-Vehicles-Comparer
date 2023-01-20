@@ -1,6 +1,8 @@
 package com.adamczajkowski.domain.di
 
 import com.adamczajkowski.domain.repository.IStarshipsRepository
+import com.adamczajkowski.domain.repository.IStorageRepository
+import com.adamczajkowski.domain.useCase.HistoryUseCase
 import com.adamczajkowski.domain.useCase.StarshipsUseCase
 import dagger.Module
 import dagger.Provides
@@ -17,4 +19,10 @@ object UseCaseModule {
     fun provideStarshipUseCase(
         starshipsRepository: IStarshipsRepository
     ): StarshipsUseCase = StarshipsUseCase(starshipsRepository)
+
+    @Singleton
+    @Provides
+    fun provideHistoryUseCase(
+        storageRepository: IStorageRepository
+    ): HistoryUseCase = HistoryUseCase(storageRepository)
 }

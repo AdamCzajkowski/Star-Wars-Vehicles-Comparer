@@ -1,5 +1,6 @@
 package com.adamczajkowski.feature.comparer_feature.dialog
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
@@ -41,18 +42,21 @@ class StarshipsDialog(
         setData()
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        callback.onDialogDismiss()
+        super.onDismiss(dialog)
+    }
+
     private fun setView() {
-        with(binding) {
-            with(starshipsDialogRecycler) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                itemAnimator = null
-                adapter = starshipsAdapter
-            }
-            updateTitle()
-            starshipDialogConfirmButton.setOnClickListener {
-                dismiss()
-            }
+        with(binding.starshipsDialogRecycler) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            itemAnimator = null
+            adapter = starshipsAdapter
+        }
+        updateTitle()
+        binding.starshipDialogConfirmButton.setOnClickListener {
+            dismiss()
         }
     }
 
